@@ -1,14 +1,11 @@
+import React from 'react';
 import MonacoEditorComponent from './components/Editor';
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header style={{ padding: '10px', backgroundColor: '#282c34', color: 'white' }}>
-        <h1>Web-Based Editor</h1>
-      </header>
-      <main style={{ flex: 1 }}>
-        <MonacoEditorComponent />
-      </main>
+    <div className="app-container" style={{ width: '100%', height: '100vh', margin: 0, padding: 0 }}>
+      <MonacoEditorComponent />
     </div>
   );
 }
