@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  pylsp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./workspace:/app/workspace
+    environment:
+      - PYLSP_PORT=3000
+      - PYLSP_HOST=0.0.0.0
+      - PYLSP_CHECK_PARENT_PROCESS=false
+    healthcheck:
+      test: ["CMD", "/app/healthcheck.sh"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    tty: true
+    stdin_open: true

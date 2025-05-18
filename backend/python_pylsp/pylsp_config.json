@@ -1,0 +1,84 @@
+{
+  "pylsp": {
+    "configurationSources": ["pycodestyle"],
+    "plugins": {
+      "jedi_completion": {
+        "enabled": true,
+        "include_params": true,
+        "include_class_objects": true
+      },
+      "jedi_definition": {
+        "enabled": true,
+        "follow_imports": true,
+        "follow_builtin_imports": true
+      },
+      "jedi_hover": {
+        "enabled": true
+      },
+      "jedi_references": {
+        "enabled": true
+      },
+      "jedi_signature_help": {
+        "enabled": true
+      },
+      "jedi_symbols": {
+        "enabled": true,
+        "all_scopes": true
+      },
+      "mccabe": {
+        "enabled": true,
+        "threshold": 15
+      },
+      "preload": {
+        "enabled": true
+      },
+      "pycodestyle": {
+        "enabled": true,
+        "maxLineLength": 100
+      },
+      "pydocstyle": {
+        "enabled": true,
+        "convention": "numpy"
+      },
+      "pyflakes": {
+        "enabled": true
+      },
+      "rope_completion": {
+        "enabled": true
+      },
+      "yapf": {
+        "enabled": false
+      },
+      "black": {
+        "enabled": true,
+        "line_length": 100,
+        "preview": false,
+        "cache_config": false
+      },
+      "flake8": {
+        "enabled": false
+      },
+      "ruff": {
+        "enabled": true,
+        "lineLength": 100
+      },
+      "mypy": {
+        "enabled": true,
+        "live_mode": true,
+        "dmypy": true
+      },
+      "isort": {
+        "enabled": true,
+        "profile": "black",
+        "line_length": 100
+      },
+      "pylsp_black": {
+        "enabled": true,
+        "line_length": 100
+      }
+    },
+    "formatFiletypes": {
+      "python": ["black"]
+    }
+  }
+}
