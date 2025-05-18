@@ -1,23 +1,48 @@
-# Web-Based Python Editor
+# Web-based Editor
 
-A web-based Python code editor with real-time execution capabilities. This project consists of a React frontend with Monaco Editor for code editing and a FastAPI backend that securely executes Python code in Docker containers.
+A web-based code editor with language intelligence support for multiple programming languages.
 
-## Project Structure
-
-```
-webbasededitor/
-├── backend/        # FastAPI server for code execution
-│   ├── main.py     # API endpoint implementation
-│   └── Dockerfile  # Docker setup for backend
-├── frontend/       # React frontend application
-│   ├── src/        # React source code
-│   └── ...         # Frontend configuration files
-└── README.md       # This file
-```
-
-## Running the Application
+## Components
 
 ### Backend
+
+#### Python Language Server (pylsp)
+
+The project includes a Python Language Server (pylsp) that provides intelligent code features for Python files:
+
+- **Code Completion**: Get suggestions as you type
+- **Hover Documentation**: View documentation when hovering over Python symbols
+- **Error Diagnostics**: See syntax and semantic errors in real-time
+- **Code Formatting**: Automatic formatting using Black
+- **Type Checking**: Static type analysis via mypy
+- **Linting**: Code quality checking with Ruff
+- **Import Sorting**: Automatic import organization with isort
+
+The language server runs in a Docker container and communicates with the editor frontend via TCP on port 3000.
+
+##### Features
+
+- Built on python-lsp-server with additional plugins
+- Configurable through pylsp_config.json
+- TCP mode allows browser-based clients to connect
+- Comprehensive test suite to verify functionality
+- Monaco Editor integration-ready
+
+##### Running the Python LSP Server
+
+```bash
+cd backend/python_pylsp
+docker-compose up -d
+```
+
+#### Other Backend Components
+
+The backend includes a FastAPI server for code execution:
+
+- **FastAPI Server**: Provides API endpoints for code execution
+- **Docker Setup**: Dockerfile for setting up the backend environment
+
+To run the FastAPI server:
 
 1. Ensure Docker is installed and running on your system
 2. Build the backend Docker image:
@@ -32,6 +57,8 @@ webbasededitor/
 
 ### Frontend
 
+The frontend is a React application with Monaco Editor for code editing:
+
 1. Navigate to the frontend directory:
    ```bash
    cd frontend
@@ -45,6 +72,27 @@ webbasededitor/
    npm run dev
    ```
 4. Open http://localhost:5173 in your browser
+
+## Development
+
+To develop the project, follow the instructions for running the backend and frontend components.
+
+## Testing
+
+The project includes comprehensive tests for each component:
+
+- **Python LSP Server**: Tests for initialization, hover documentation, code completion, diagnostics, document symbols, and formatting
+
+To run the Python LSP Server tests:
+
+```bash
+cd backend/python_pylsp
+python -m pytest tests/test_pylsp_server.py -v
+```
+
+## Deployment
+
+To deploy the application, follow the instructions for running the backend and frontend components.
 
 ## Example Python Scripts
 
