@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "monaco-languageclient": "^9.6.0",
+    "net": "^1.0.2",
+    "vscode-ws-jsonrpc": "^3.4.0",
+    "ws": "^8.18.2"
+  }
+}

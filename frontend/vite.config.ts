@@ -6,6 +6,10 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': 'http://localhost:8000',
+      '/python-lsp': {
+        target: 'ws://localhost:3001',
+        ws: true,
+      },
     },
   },
 });

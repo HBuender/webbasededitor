@@ -35,6 +35,20 @@ cd backend/python_pylsp
 docker-compose up -d
 ```
 
+#### WebSocket Proxy for LSP Integration
+
+The project includes a WebSocket proxy that bridges the browser-based editor with the TCP-based Language Server:
+
+- **Protocol Conversion**: Transforms WebSocket messages to TCP and back
+- **Real-time Communication**: Enables real-time language features in the browser
+- **Error Handling**: Robust handling of connection issues and reconnection
+
+To run the WebSocket proxy:
+
+```bash
+node backend/ws-proxy.js
+```
+
 #### Other Backend Components
 
 The backend includes a FastAPI server for code execution:
@@ -59,6 +73,17 @@ To run the FastAPI server:
 
 The frontend is a React application with Monaco Editor for code editing:
 
+#### Monaco Editor with LSP Integration
+
+The editor now features full Language Server Protocol integration:
+
+- **Intelligent Code Completion**: Context-aware suggestions from the LSP server
+- **Real-time Error Diagnostics**: Syntax and semantic errors shown as you type
+- **Connection Status Indicator**: Visual feedback on LSP connection state
+- **Automatic Reconnection**: Gracefully handles server disconnections
+
+#### Running the Frontend
+
 1. Navigate to the frontend directory:
    ```bash
    cd frontend
@@ -73,9 +98,40 @@ The frontend is a React application with Monaco Editor for code editing:
    ```
 4. Open http://localhost:5173 in your browser
 
+## Architecture
+
+The application follows a modern web architecture:
+
+1. **Browser-based Editor**: React + Monaco Editor in the frontend
+2. **WebSocket Communication**: Real-time connection to LSP services
+3. **Language Server**: TCP-based Python LSP for intelligent features
+4. **Code Execution**: Secure, containerized Python execution
+
 ## Development
 
-To develop the project, follow the instructions for running the backend and frontend components.
+To develop the project:
+
+1. Start the Python Language Server:
+   ```bash
+   cd backend/python_pylsp
+   docker-compose up -d
+   ```
+
+2. Run the WebSocket proxy:
+   ```bash
+   node backend/ws-proxy.js
+   ```
+
+3. Start the FastAPI backend:
+   ```bash
+   docker run -p 8000:8000 --rm -v //var/run/docker.sock:/var/run/docker.sock fastapi-python-runner
+   ```
+
+4. Run the frontend development server:
+   ```bash
+   cd frontend
+   npm run dev
+   ```
 
 ## Testing
 
@@ -92,7 +148,18 @@ python -m pytest tests/test_pylsp_server.py -v
 
 ## Deployment
 
-To deploy the application, follow the instructions for running the backend and frontend components.
+To deploy the application:
+
+1. Build the frontend:
+   ```bash
+   cd frontend
+   npm run build
+   ```
+
+2. Use Docker Compose to deploy all components:
+   ```bash
+   docker-compose up -d
+   ```
 
 ## Example Python Scripts
 
@@ -136,7 +203,9 @@ print(f"Max: {max(data)}")
 
 ## Features
 
-- Python code editing with syntax highlighting
+- Python code editing with syntax highlighting and intelligent code features
+- Language Server Protocol integration for advanced coding assistance
+- WebSocket proxy for real-time language services
 - Secure code execution in isolated Docker containers
 - Real-time output display
 - Error handling and execution time tracking
@@ -148,3 +217,14 @@ The backend runs user code in isolated Docker containers with:
 - Memory limits (50MB)
 - Network access disabled
 - Execution timeouts (5 seconds)
+
+## Troubleshooting
+
+### LSP Connection Issues
+
+If the editor shows "LSP: connecting" but doesn't connect:
+
+1. Verify the Python LSP server is running on port 3000
+2. Check that the WebSocket proxy is running on port 3001
+3. Inspect browser console for WebSocket connection errors
+4. Ensure your firewall allows WebSocket connections

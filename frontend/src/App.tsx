@@ -1,5 +1,5 @@
 import React from 'react';
-import MonacoEditorComponent from './components/Editor';
+import MonacoEditorComponent from './components/SimplePythonEditor';
 import './App.css';
 
 function App() {
