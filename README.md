@@ -45,6 +45,17 @@ The project includes a WebSocket proxy that bridges the browser-based editor wit
 
 To run the WebSocket proxy:
 
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+   
+3. Start the WebSocket proxy:
+   ```bash
 ```bash
 node backend/ws-proxy.js
 ```
@@ -61,13 +72,13 @@ To run the FastAPI server:
 1. Ensure Docker is installed and running on your system
 2. Build the backend Docker image:
    ```bash
-   docker build -t fastapi-python-runner ./backend
+   docker build -t fastapi-python-runner ./backend/python_executor
    ```
 3. Run the backend server:
    ```bash
    docker run -p 8000:8000 --rm -v //var/run/docker.sock:/var/run/docker.sock fastapi-python-runner
    ```
-   Note: On Linux, use `-v /var/run/docker.sock:/var/run/docker.sock` instead
+   Note: On Linux and Mac, use `-v /var/run/docker.sock:/var/run/docker.sock` instead
 
 ### Frontend
 
